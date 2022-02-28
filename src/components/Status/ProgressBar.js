@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     width: '100%',
-    height: 20,
+    height: 21,
     borderRadius: 13,
     borderWidth: 2,
     ...spacingChanger({marginTop: 'm'}),

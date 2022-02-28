@@ -4,18 +4,17 @@ import Text from '../Text';
 import {TaskContext} from '../../config/Navigation';
 import {spacingChanger} from '../../utils/utilFunctions';
 import Task from '../Home/Task';
-import {FlatList, StyleSheet} from 'react-native';
-import RowSeparator from '../Settings/RowSeparator';
+import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'blue',
     alignItems: 'center',
   },
   flatlist: {
-    alignItems: 'flex-start',
-    backgroundColor: 'red',
-    wdith: '80%',
+    alignItems: 'center',
+    wdith: '100%',
+    ...spacingChanger({marginTop: 's'}),
   },
 });
 
@@ -25,6 +24,9 @@ const SubTask = ({title, data = []}) => {
   const filteredTasks = tasks.tasks.tasks.filter(task => {
     return task.id in data;
   });
+
+  // initialize navigation
+  const navigation = useNavigation();
 
   const RenderItem = ({item}) => {
     return (
@@ -40,6 +42,10 @@ const SubTask = ({title, data = []}) => {
     );
   };
 
+  const Separator = () => {
+    return <Box spacing={{marginTop: 'xxs', marginBottom: 'xxs'}} />;
+  };
+
   return (
     <Box style={styles.container}>
       <Text
@@ -49,10 +55,9 @@ const SubTask = ({title, data = []}) => {
         {title}
       </Text>
       <FlatList
-        style={{width: '80%'}}
         contentContainerStyle={styles.flatlist}
         renderItem={RenderItem}
-        ItemSeparatorComponent={RowSeparator}
+        ItemSeparatorComponent={Separator}
         data={filteredTasks}
         keyExtractor={item => item.id}
       />

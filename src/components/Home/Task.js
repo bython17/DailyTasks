@@ -30,7 +30,7 @@ const Task = ({id, name, time, state, mode = 'normal'}) => {
         style={
           mode === 'normal'
             ? styles.buttonTimeContainer
-            : {...styles.buttonTimeContainer, width: '100%'}
+            : {...styles.buttonTimeContainer, width: '82%', marginRight: 0}
         }>
         <Button
           text={name}
